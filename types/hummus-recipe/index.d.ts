@@ -189,6 +189,36 @@ declare namespace Recipe {
         rotationOrigin?: number[];
     }
 
+    /**
+     * The options
+     */
+    interface TextDimensionsOptions {
+        /**
+         * name of font from which measurements are to be taken
+         */
+        font?: string;
+        /**
+         * size of font to be used in taking measurements
+         */
+        size?: number;
+        /**
+         * character spacing being applied to the given text.
+         */
+        charSpace?: number;
+    }
+
+    /**
+     * measurement components of given text
+     */
+    interface TextDimensions {
+        width: number;
+        height: number;
+        xMin: number;
+        xMax: number;
+        yMin: number;
+        yMax: number;
+    }
+
     interface PageInfo {
         pageNumber: number;
         mediaBox: number[];
@@ -249,6 +279,13 @@ declare class Recipe {
     split(outputDir: string, prefix: string): Recipe;
 
     text(text: string, x: number, y: number, options?: Recipe.TextOptions): Recipe;
+    
+    /**
+     * Get text dimensions
+     * @param text text to be measured
+     * @param options The options
+     */
+    textDimensions(text: string, options: Recipe.TextDimensionsOptions): Recipe.TextDimensions;
 
     moveTo(x: number, y: number): Recipe;
 
